@@ -21,15 +21,26 @@ def image_dog_in_tk():
         img_tk = ImageTk.PhotoImage(img)
         i_m.config(image=img_tk)
         i_m.image = img_tk
+    progress.stop()
+
+
+def func_progress():
+    progress.config(value=0)
+    progress.start(22)
+    window.after(3000, image_dog_in_tk)
+
 
 window = Tk()
-window.geometry('500x400')
+window.geometry('500x450')
 window.title('Изображения собак')
 
 i_m = Label()
-i_m.pack()
+i_m.pack(pady=[0,10])
 
-btn = Button(text='Получить собачку', command=image_dog_in_tk)
+btn = ttk.Button(text='Получить собачку', command=func_progress)
 btn.pack()
+
+progress = ttk.Progressbar(mode='determinate', length=400)
+progress.pack()
 
 window.mainloop()
